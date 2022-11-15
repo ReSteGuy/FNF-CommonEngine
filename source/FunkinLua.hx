@@ -1359,6 +1359,12 @@ class FunkinLua {
 		});*/
 
 		//stupid bietch ass functions
+		
+		Lua_helper.add_callback(lua, "playSong", function(name:String, difficulty:String) {
+			PlayState.SONG = Song.loadFromJson(name + "-" + difficulty.toLowerCase(), name);
+			FlxG.switchState(new PlayState());
+		});
+		
 		Lua_helper.add_callback(lua, "addScore", function(value:Int = 0) {
 			PlayState.instance.songScore += value;
 			PlayState.instance.RecalculateRating();
