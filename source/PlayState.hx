@@ -3809,7 +3809,7 @@ class PlayState extends MusicBeatState
 				}
 				
 			case 'Play Sound':
-				FlxG.sound.play(Paths.sound(value1), value2);
+				FlxG.sound.play(Paths.sound(value1), parseFloat(value2));
 		}
 		callOnLuas('onEvent', [eventName, value1, value2]);
 	}
