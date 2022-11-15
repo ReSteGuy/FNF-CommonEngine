@@ -303,7 +303,7 @@ class PlayState extends MusicBeatState
 	var boyfriendIdled:Bool = false;
 	
 	// Hit score
-	var hitscore = 0
+	var hitscore = 0;
 
 	// Lua shit
 	public static var instance:PlayState;
