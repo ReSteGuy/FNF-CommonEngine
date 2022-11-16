@@ -1496,7 +1496,7 @@ class ChartingState extends MusicBeatState
 			else if (wname == 'voices_volume')
 			{
 				vocals.volume = nums.value;
-				mvocals.volume = vocals.volume
+				mvocals.volume = vocals.volume;
 			}
 		}
 		else if(id == FlxUIInputText.CHANGE_EVENT && (sender is FlxUIInputText)) {
