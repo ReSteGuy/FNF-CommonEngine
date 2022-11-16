@@ -1005,13 +1005,13 @@ class ChartingState extends MusicBeatState
 		tab_group_extras.name = 'Extras';
 
 		var multi_voices = new FlxUICheckBox(110, 68, null, null, "Multiple Voices", 100);
-		multi_voices.checked = _song.doubleVoices;
+		multi_voices.checked = _song.multiVoices;
 		multi_voices.callback = function()
 		{
 			_song.multiVoices = multi_voices.checked;
 		};
 		
-		tab_group_song.add(multi_voices);
+		tab_group_extras.add(multi_voices);
 
 		UI_box.addGroup(tab_group_extras);
 	}
