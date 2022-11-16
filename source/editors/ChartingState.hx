@@ -149,6 +149,7 @@ class ChartingState extends MusicBeatState
 	var playbackSpeed:Float = 1;
 
 	var vocals:FlxSound = null;
+	var mvocals:FlxSound = null;
 
 	var leftIcon:HealthIcon;
 	var rightIcon:HealthIcon;
@@ -217,6 +218,7 @@ class ChartingState extends MusicBeatState
 				events: [],
 				bpm: 150.0,
 				needsVoices: true,
+				multiVoices: false,
 				arrowSkin: '',
 				splashSkin: 'noteSplashes',//idk it would crash if i didn't
 				player1: 'bf',
@@ -330,7 +332,7 @@ class ChartingState extends MusicBeatState
 			{name: "Note", label: 'Note'},
 			{name: "Events", label: 'Events'},
 			{name: "Charting", label: 'Charting'},
-			{name: "CE Extras", label: 'CE Extras'},
+			{name: "Extras", label: 'CE Extras'},
 		];
 
 		UI_box = new FlxUITabMenu(null, tabs, true);
@@ -372,6 +374,7 @@ class ChartingState extends MusicBeatState
 		addNoteUI();
 		addEventsUI();
 		addChartingUI();
+		addExtrasUI();
 		updateHeads();
 		updateWaveform();
 		//UI_box.selected_tab = 4;
@@ -416,6 +419,7 @@ class ChartingState extends MusicBeatState
 		check_voices.callback = function()
 		{
 			_song.needsVoices = check_voices.checked;
+			_song.multiVoices = check_voices.checked;
 			//trace('CHECKED!');
 		};
 
@@ -994,6 +998,23 @@ class ChartingState extends MusicBeatState
 
 		UI_box.addGroup(tab_group_note);
 	}
+	
+	function addExtrasUI():Void
+	{
+		var tab_group_extras = new FlxUI(null, UI_box);
+		tab_group_extras.name = 'Extras';
+
+		var multi_voices = new FlxUICheckBox(110, 68, null, null, "Multiple Voices", 100);
+		multi_voices.checked = _song.doubleVoices;
+		multi_voices.callback = function()
+		{
+			_song.multiVoices = multi_voices.checked;
+		};
+		
+		tab_group_song.add(multi_voices);
+
+		UI_box.addGroup(tab_group_extras);
+	}
 
 	var eventDropDown:FlxUIDropDownMenuCustom;
 	var descText:FlxText;
@@ -1266,6 +1287,7 @@ class ChartingState extends MusicBeatState
 					vol = 0;
 
 				vocals.volume = vol;
+				mvocals.volume = vol;
 			}
 		};
 
@@ -1360,6 +1382,12 @@ class ChartingState extends MusicBeatState
 			vocals.loadEmbedded(file);
 			FlxG.sound.list.add(vocals);
 		}
+		var file:Dynamic = Paths.mvoices(currentSongName);
+		mvocals = new FlxSound();
+		if (Std.isOfType(file, Sound) || OpenFlAssets.exists(file)) {
+			vocals.loadEmbedded(file);
+			FlxG.sound.list.add(mvocals);
+		}
 		generateSong();
 		FlxG.sound.music.pause();
 		Conductor.songPosition = sectionStartTime();
@@ -1378,12 +1406,15 @@ class ChartingState extends MusicBeatState
 			if(vocals != null) {
 				vocals.pause();
 				vocals.time = 0;
+				mvocals.pause();
+				mvocals.time = 0;
 			}
 			changeSection();
 			curSec = 0;
 			updateGrid();
 			updateSectionUI();
 			vocals.play();
+			mvocals.play();
 		};
 	}
 
@@ -1465,6 +1496,7 @@ class ChartingState extends MusicBeatState
 			else if (wname == 'voices_volume')
 			{
 				vocals.volume = nums.value;
+				mvocals.volume = vocals.volume
 			}
 		}
 		else if(id == FlxUIInputText.CHANGE_EVENT && (sender is FlxUIInputText)) {
@@ -1678,6 +1710,7 @@ class ChartingState extends MusicBeatState
 				PlayState.SONG = _song;
 				FlxG.sound.music.stop();
 				if(vocals != null) vocals.stop();
+				if(vocals != null) mvocals.stop();
 
 				//if(_song.stage == null) _song.stage = stageDropDown.selectedLabel;
 				StageData.loadDirectory(_song);
@@ -1741,6 +1774,7 @@ class ChartingState extends MusicBeatState
 				{
 					FlxG.sound.music.pause();
 					if(vocals != null) vocals.pause();
+					if(vocals != null) mvocals.pause();
 				}
 				else
 				{
@@ -1749,6 +1783,10 @@ class ChartingState extends MusicBeatState
 						vocals.pause();
 						vocals.time = FlxG.sound.music.time;
 						vocals.play();
+						mvocals.play();
+						mvocals.pause();
+						mvocals.time = FlxG.sound.music.time;
+						mvocals.play();
 					}
 					FlxG.sound.music.play();
 				}
@@ -1784,7 +1822,9 @@ class ChartingState extends MusicBeatState
 					}
 				if(vocals != null) {
 					vocals.pause();
+					mvocals.pause();
 					vocals.time = FlxG.sound.music.time;
+					mvocals.time = FlxG.sound.music.time;
 				}
 			}
 
@@ -1811,7 +1851,9 @@ class ChartingState extends MusicBeatState
 
 				if(vocals != null) {
 					vocals.pause();
+					mvocals.pause();
 					vocals.time = FlxG.sound.music.time;
+					mvocals.time = FlxG.sound.music.time;
 				}
 			}
 
@@ -1901,7 +1943,9 @@ class ChartingState extends MusicBeatState
 					FlxTween.tween(FlxG.sound.music, {time:feces}, 0.1, {ease:FlxEase.circOut});
 					if(vocals != null) {
 						vocals.pause();
+						mvocals.pause();
 						vocals.time = FlxG.sound.music.time;
+						mvocals.time = FlxG.sound.music.time;
 					}
 
 					var dastrum = 0;
@@ -1995,6 +2039,7 @@ class ChartingState extends MusicBeatState
 
 		FlxG.sound.music.pitch = playbackSpeed;
 		vocals.pitch = playbackSpeed;
+		mvocals.pitch = playbackSpeed;
 
 		bpmTxt.text =
 		Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + " / " + Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2)) +
@@ -2427,7 +2472,9 @@ class ChartingState extends MusicBeatState
 
 		if(vocals != null) {
 			vocals.pause();
+			mvocals.pause();
 			vocals.time = FlxG.sound.music.time;
+			mvocals.time = FlxG.sound.music.time;
 		}
 		updateCurStep();
 
@@ -2446,9 +2493,11 @@ class ChartingState extends MusicBeatState
 				FlxG.sound.music.pause();
 
 				FlxG.sound.music.time = sectionStartTime();
-				if(vocals != null) {
+				if(vocals != null ) {
 					vocals.pause();
+					mvocals.pause();
 					vocals.time = FlxG.sound.music.time;
+					mvocals.time = FlxG.sound.music.time;
 				}
 				updateCurStep();
 			}
