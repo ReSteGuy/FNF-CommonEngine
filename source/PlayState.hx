@@ -4571,7 +4571,6 @@ class PlayState extends MusicBeatState
 		//trace(daNote.missHealth);
 		songMisses++;
 		vocals.volume = 0;
-		mvocals.volume = 0;
 		if(!practiceMode) songScore -= 10;
 
 		totalPlayed++;
