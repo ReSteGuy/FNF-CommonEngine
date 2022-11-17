@@ -1004,7 +1004,7 @@ class ChartingState extends MusicBeatState
 		var tab_group_extras = new FlxUI(null, UI_box);
 		tab_group_extras.name = 'Extras';
 
-		var multi_voices = new FlxUICheckBox(110, 68, null, null, "Multiple Voices", 100);
+		var multi_voices = new FlxUICheckBox(10, 10, null, null, "Multiple Voices", 100);
 		multi_voices.checked = _song.multiVoices;
 		multi_voices.callback = function()
 		{
@@ -1774,7 +1774,7 @@ class ChartingState extends MusicBeatState
 				{
 					FlxG.sound.music.pause();
 					if(vocals != null) vocals.pause();
-					if(vocals != null) mvocals.pause();
+					if(mvocals != null) mvocals.pause();
 				}
 				else
 				{
@@ -1783,6 +1783,8 @@ class ChartingState extends MusicBeatState
 						vocals.pause();
 						vocals.time = FlxG.sound.music.time;
 						vocals.play();
+					}
+					if(mvocals != null  && multi_voices.checked) {
 						mvocals.play();
 						mvocals.pause();
 						mvocals.time = FlxG.sound.music.time;
