@@ -1784,7 +1784,7 @@ class ChartingState extends MusicBeatState
 						vocals.time = FlxG.sound.music.time;
 						vocals.play();
 					}
-					if(mvocals != null  && multi_voices.checked) {
+					if(mvocals != null) {
 						mvocals.play();
 						mvocals.pause();
 						mvocals.time = FlxG.sound.music.time;
