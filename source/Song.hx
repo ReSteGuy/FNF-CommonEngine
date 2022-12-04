@@ -20,6 +20,7 @@ typedef SwagSong =
 	var bpm:Float;
 	var needsVoices:Bool;
 	var multiVoices:Bool;
+	var cinematic:Bool;
 	var speed:Float;
 
 	var player1:String;

@@ -188,6 +188,8 @@ class PlayState extends MusicBeatState
 
 	private var timeBarBG:AttachedSprite;
 	public var timeBar:FlxBar;
+	
+	private var cinematic1:FlxSprite;
 
 	public var ratingsData:Array<Rating> = [];
 	public var sicks:Int = 0;
@@ -1026,6 +1028,13 @@ class PlayState extends MusicBeatState
 		doof.skipDialogueThing = skipDialogue;
 
 		Conductor.songPosition = -5000 / Conductor.songPosition;
+		
+		cinematic1 = new FlxSprite(-80).loadGraphic(Paths.image('cinamaticborders'));
+		cinematic1.scrollFactor.set();
+		cinematic1.screenCenter();
+		if (SONG.cinematic) {
+		add(cinematic1);
+		}
 
 		strumLine = new FlxSprite(ClientPrefs.middleScroll ? STRUM_X_MIDDLESCROLL : STRUM_X, 50).makeGraphic(FlxG.width, 10);
 		if(ClientPrefs.downScroll) strumLine.y = FlxG.height - 150;
@@ -1166,7 +1175,9 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) {
 			botplayTxt.y = timeBarBG.y - 78;
 		}
+		
 
+		cinematic1.cameras = [camHUD];
 		strumLineNotes.cameras = [camHUD];
 		grpNoteSplashes.cameras = [camHUD];
 		notes.cameras = [camHUD];

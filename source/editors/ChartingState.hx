@@ -219,6 +219,7 @@ class ChartingState extends MusicBeatState
 				bpm: 150.0,
 				needsVoices: true,
 				multiVoices: false,
+				cinematic: false,
 				arrowSkin: '',
 				splashSkin: 'noteSplashes',//idk it would crash if i didn't
 				player1: 'bf',
@@ -419,7 +420,6 @@ class ChartingState extends MusicBeatState
 		check_voices.callback = function()
 		{
 			_song.needsVoices = check_voices.checked;
-			_song.multiVoices = check_voices.checked;
 			//trace('CHECKED!');
 		};
 
@@ -1011,7 +1011,15 @@ class ChartingState extends MusicBeatState
 			_song.multiVoices = multi_voices.checked;
 		};
 		
+		var cinematic = new FlxUICheckBox(10, 25, null, null, "Cinematic Border", 100);
+		cinematic.checked = _song.cinematic;
+		cinematic.callback = function()
+		{
+			_song.cinematic = cinematic.checked;
+		};
+		
 		tab_group_extras.add(multi_voices);
+		tab_group_extras.add(cinematic);
 
 		UI_box.addGroup(tab_group_extras);
 	}
@@ -1773,8 +1781,11 @@ class ChartingState extends MusicBeatState
 				if (FlxG.sound.music.playing)
 				{
 					FlxG.sound.music.pause();
-					if(vocals != null) vocals.pause();
-					if(mvocals != null) mvocals.pause();
+					if(vocals != null) {
+					vocals.pause();
+					mvocals.pause();
+					}
+
 				}
 				else
 				{
@@ -1783,8 +1794,6 @@ class ChartingState extends MusicBeatState
 						vocals.pause();
 						vocals.time = FlxG.sound.music.time;
 						vocals.play();
-					}
-					if(mvocals != null) {
 						mvocals.play();
 						mvocals.pause();
 						mvocals.time = FlxG.sound.music.time;
