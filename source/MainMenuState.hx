@@ -22,24 +22,36 @@ import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
 
 using StringTools;
+typedef MainMenuData =
+{
+	storymode:Bool,
+	freeplay:Bool,
+	mods:Bool,
+	awards:Bool,
+	credits:Bool,
+	donate:Bool,
+	options:Bool
+}
 
 class MainMenuState extends MusicBeatState
 {
 	public static var commonEngineVersion:String = '0.1.0'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
+	var mainmenuJSON:MainMenuData;
+	
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
 	
 	var optionShit:Array<String> = [
-		'story_mode',
-		'freeplay',
-		#if MODS_ALLOWED 'mods', #end
-		#if ACHIEVEMENTS_ALLOWED 'awards', #end
-		'credits',
-		#if !switch 'donate', #end
-		'options'
+		#if mainmenuJSON.storymode 'story_mode', #end
+		#if mainmenuJSON.freeplay 'freeplay', #end
+		#if mainmenuJSON.mods #if MODS_ALLOWED 'mods', #end
+		#if mainmenuJSON.awards #if ACHIEVEMENTS_ALLOWED 'awards', #end  #end
+		#if mainmenuJSON.credits 'credits', #end
+		#if mainmenuJSON.donate #if !switch 'donate', #end #end
+		#if mainmenuJSON.options 'options' #end
 	];
 
 	var magenta:FlxSprite;
@@ -49,6 +61,8 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+		mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
+		
 		#if MODS_ALLOWED
 		Paths.pushGlobalMods();
 		#end

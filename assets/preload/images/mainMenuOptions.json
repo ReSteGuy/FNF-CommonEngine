@@ -1,0 +1,9 @@
+{
+	storymode:true,
+	freeplay:true,
+	mods:true,
+	awards:true,
+	credits:true,
+	donate:true,
+	options:true
+}
