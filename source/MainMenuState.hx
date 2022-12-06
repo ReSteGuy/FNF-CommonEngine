@@ -39,6 +39,7 @@ class MainMenuState extends MusicBeatState
 	public static var commonEngineVersion:String = '0.1.0'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 	var mainmenuJSON:MainMenuData;
+	mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
 	
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -62,8 +63,6 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-	
-		mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
 		
 		#if MODS_ALLOWED
 		Paths.pushGlobalMods();
@@ -171,6 +170,7 @@ class MainMenuState extends MusicBeatState
 			}
 		}
 		#end
+		
 
 		super.create();
 	}

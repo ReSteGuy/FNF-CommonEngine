@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Psych Engine" file="CommonEngine" packageName="com.rsguy.commonengine" package="com.rsguy.commonengine" main="Main" version="0.2.8" company="RSGuy" />
+	<app title="Friday Night Funkin': Common Engine" file="CommonEngine" packageName="com.rsguy.commonengine" package="com.rsguy.commonengine" main="Main" version="0.2.8" company="RSGuy" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
