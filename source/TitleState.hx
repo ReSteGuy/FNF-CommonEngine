@@ -437,6 +437,7 @@ class TitleState extends MusicBeatState
 	
 	var newTitle:Bool = false;
 	var titleTimer:Float = 0;
+	var selectedSomethin:Bool = false;
 
 	override function update(elapsed:Float)
 	{
@@ -445,6 +446,15 @@ class TitleState extends MusicBeatState
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
+		
+		if (!selectedSomethin)
+		{
+			if (controls.BACK)
+			{
+				selectedSomethin = true;
+				MusicBeatState.switchState(new ModsMenuState());
+			}
+		}
 
 		#if mobile
 		for (touch in FlxG.touches.list)

@@ -20,6 +20,7 @@ import lime.app.Application;
 import Achievements;
 import editors.MasterEditorMenu;
 import flixel.input.keyboard.FlxKey;
+import haxe.Json;
 
 using StringTools;
 typedef MainMenuData =
@@ -61,6 +62,7 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
+	
 		mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
 		
 		#if MODS_ALLOWED
