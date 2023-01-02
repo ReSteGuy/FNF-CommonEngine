@@ -45,14 +45,16 @@ class MainMenuState extends MusicBeatState
 	private var camGame:FlxCamera;
 	private var camAchievement:FlxCamera;
 	
+
+	
 	var optionShit:Array<String> = [
-		#if mainmenuJSON.storymode 'story_mode', #end
-		#if mainmenuJSON.freeplay 'freeplay', #end
-		#if mainmenuJSON.mods #if MODS_ALLOWED 'mods', #end #end
-		#if mainmenuJSON.awards #if ACHIEVEMENTS_ALLOWED 'awards', #end  #end
-		#if mainmenuJSON.credits 'credits', #end
-		#if mainmenuJSON.donate #if !switch 'donate', #end #end
-		#if mainmenuJSON.options 'options' #end
+		'story_mode',
+		'freeplay',
+		#if MODS_ALLOWED 'mods', #end
+		#if ACHIEVEMENTS_ALLOWED 'awards', #end
+		'credits',
+		#if !switch 'donate', #end
+		'options'
 	];
 
 	var magenta:FlxSprite;
@@ -62,7 +64,28 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-			
+		titleJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
+		#if titleJSON.storymode
+		optionShit.remove("story_mode");
+		#end
+		#if titleJSON.freeplay
+		optionShit.remove("freeplay");
+		#end
+		#if titleJSON.mods
+		optionShit.remove("mods");
+		#end
+		#if titleJSON.awards
+		optionShit.remove("awards");
+		#end
+		#if titleJSON.credits
+		optionShit.remove("credits");
+		#end
+		#if titleJSON.donate
+		optionShit.remove("donate");
+		#end
+		#if titleJSON.options
+		optionShit.remove("options");
+		#end
 		
 		#if MODS_ALLOWED
 		Paths.pushGlobalMods();
