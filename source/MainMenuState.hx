@@ -64,26 +64,26 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		titleJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
-		#if titleJSON.storymode
+		mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
+		#if mainmenuJSON.storymode
 		optionShit.remove("story_mode");
 		#end
-		#if titleJSON.freeplay
+		#if mainmenuJSON.freeplay
 		optionShit.remove("freeplay");
 		#end
-		#if titleJSON.mods
+		#if mainmenuJSON.mods
 		optionShit.remove("mods");
 		#end
-		#if titleJSON.awards
+		#if mainmenuJSON.awards
 		optionShit.remove("awards");
 		#end
-		#if titleJSON.credits
+		#if mainmenuJSON.credits
 		optionShit.remove("credits");
 		#end
-		#if titleJSON.donate
+		#if mainmenuJSON.donate
 		optionShit.remove("donate");
 		#end
-		#if titleJSON.options
+		#if mainmenuJSON.options
 		optionShit.remove("options");
 		#end
 		
