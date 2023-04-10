@@ -64,7 +64,7 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		mainmenuJSON = Json.parse(Paths.getTextFromFile('data/mainMenuOptions.json'));
+		mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
 		if (!mainmenuJSON.storymode) {
 		optionShit.remove("story_mode");
 		}
