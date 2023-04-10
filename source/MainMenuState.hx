@@ -64,28 +64,28 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
-		#if mainmenuJSON.storymode
+		mainmenuJSON = Json.parse(Paths.getTextFromFile('data/mainMenuOptions.json'));
+		if (!mainmenuJSON.storymode) {
 		optionShit.remove("story_mode");
-		#end
-		#if mainmenuJSON.freeplay
+		}
+		if (!mainmenuJSON.freeplay) {
 		optionShit.remove("freeplay");
-		#end
-		#if mainmenuJSON.mods
+		}
+		if (!mainmenuJSON.mods) {
 		optionShit.remove("mods");
-		#end
-		#if mainmenuJSON.awards
+		}
+		if (!mainmenuJSON.awards) {
 		optionShit.remove("awards");
-		#end
-		#if mainmenuJSON.credits
+		}
+		if (!mainmenuJSON.credits) {
 		optionShit.remove("credits");
-		#end
-		#if mainmenuJSON.donate
+		}
+		if (!mainmenuJSON.donate) {
 		optionShit.remove("donate");
-		#end
-		#if mainmenuJSON.options
+		}
+		if (!mainmenuJSON.options) {
 		optionShit.remove("options");
-		#end
+		}
 		
 		#if MODS_ALLOWED
 		Paths.pushGlobalMods();
