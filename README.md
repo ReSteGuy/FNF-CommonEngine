@@ -1,3 +1,13 @@
+#Friday Night Funkin' - Common Engine
+Stupid engine that was going to be used for Friday Night Yippin' A lost mod for now!
+
+## Installation
+Go down to the Psych Engine Installion for instructions!
+
+## Credits
+* RSGuy - Pretty much everything new! 
+* Shadow Mario & The whole team - Psych Engine Base
+
 # Friday Night Funkin' - Psych Engine
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
 
