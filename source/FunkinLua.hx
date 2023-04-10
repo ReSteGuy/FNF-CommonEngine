@@ -1365,9 +1365,9 @@ class FunkinLua {
 			FlxG.switchState(new PlayState());
 		});
 		
-		Lua_helper.add_callback(lua, "switchState", function(name:String) {
-			FlxG.switchState(new name());
-		});
+		//Lua_helper.add_callback(lua, "switchState", function(name:String) {
+		//	FlxG.switchState(new name);
+		//});
 
 		Lua_helper.add_callback(lua, "addScore", function(value:Int = 0) {
 			PlayState.instance.songScore += value;
