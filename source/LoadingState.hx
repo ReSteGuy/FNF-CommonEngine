@@ -51,10 +51,11 @@ class LoadingState extends MusicBeatState
 		funkay.setGraphicSize(0, FlxG.height);
 		funkay.updateHitbox();
 		funkay.antialiasing = ClientPrefs.globalAntialiasing;
-		funkay.animation.addByPrefix("ani", 24);
+		funkay.animation.addByPrefix("animation","ani",24,true);
 		add(funkay);
 		funkay.scrollFactor.set();
 		funkay.screenCenter();
+		funkay.play("animation", true)
 
 		loadBar = new FlxSprite(0, FlxG.height - 20).makeGraphic(FlxG.width, 10, 0xffff16d2);
 		loadBar.screenCenter(X);
