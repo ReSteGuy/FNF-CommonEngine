@@ -5,5 +5,6 @@
 	"awards":true,
 	"credits":true,
 	"donate":true,
-	"options":true
+	"options":true,
+	"shoveleft":true
 }
