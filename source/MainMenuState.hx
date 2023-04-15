@@ -31,8 +31,7 @@ typedef MainMenuData =
 	awards:Bool,
 	credits:Bool,
 	donate:Bool,
-	options:Bool,
-	shoveleft:Bool
+	options:Bool
 }
 
 class MainMenuState extends MusicBeatState
@@ -158,11 +157,12 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			if (mainmenuJSON.shoveleft) {
-				menuItem.x = 100;
-			}else{
-				menuItem.screenCenter(x);
-			}
+		//	if (mainmenuJSON.shoveleft) { 
+		//		menuItem.x = 100;
+		//	}else{
+		//		menuItem.screenCenter(x);
+		//	}
+			menuItem.screenCenter(x)
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
@@ -317,9 +317,10 @@ class MainMenuState extends MusicBeatState
 
 		menuItems.forEach(function(spr:FlxSprite)
 		{
-			if (!mainmenuJSON.shoveleft) {
-				spr.screenCenter(x);
-			}
+		//	if (!mainmenuJSON.shoveleft) {
+		//		spr.screenCenter(x);
+		//	}
+			spr.screenCenter(x)
 		});
 	}
 
