@@ -1,4 +1,4 @@
-package;
+ package;
 
 #if desktop
 import Discord.DiscordClient;
@@ -59,9 +59,6 @@ class MainMenuState extends MusicBeatState
 		'options'
 	];
 
-	mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
-	// Removes the Options early, hoping this crap works.
-
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
@@ -69,7 +66,8 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-
+		mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
+		// Removes the Options early, hoping this crap works.
 		if (!mainmenuJSON.storymode) {
 			optionShit.remove("story_mode");
 		}
