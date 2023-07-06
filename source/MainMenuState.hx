@@ -61,27 +61,6 @@ class MainMenuState extends MusicBeatState
 
 	var mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
 	// Removes the Options early, hoping this crap works.
-	if (!mainmenuJSON.storymode) {
-		optionShit.remove("story_mode");
-	}
-	if (!mainmenuJSON.freeplay) {
-		optionShit.remove("freeplay");
-	}
-	if (!mainmenuJSON.mods) {
-		optionShit.remove("mods");
-	}
-	if (!mainmenuJSON.awards) {
-		optionShit.remove("awards");
-	}
-	if (!mainmenuJSON.credits) {
-		optionShit.remove("credits");
-	}
-	if (!mainmenuJSON.donate) {
-		optionShit.remove("donate");
-	}
-	if (!mainmenuJSON.options) {
-		optionShit.remove("options");
-	}
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
@@ -91,6 +70,27 @@ class MainMenuState extends MusicBeatState
 	override function create()
 	{
 
+		if (!mainmenuJSON.storymode) {
+			optionShit.remove("story_mode");
+		}
+		if (!mainmenuJSON.freeplay) {
+			optionShit.remove("freeplay");
+		}
+		if (!mainmenuJSON.mods) {
+			optionShit.remove("mods");
+		}
+		if (!mainmenuJSON.awards) {
+			optionShit.remove("awards");
+		}
+		if (!mainmenuJSON.credits) {
+			optionShit.remove("credits");
+		}
+		if (!mainmenuJSON.donate) {
+			optionShit.remove("donate");
+		}
+		if (!mainmenuJSON.options) {
+			optionShit.remove("options");
+		}
 	
 		#if MODS_ALLOWED
 		Paths.pushGlobalMods();
@@ -234,6 +234,27 @@ class MainMenuState extends MusicBeatState
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
 
+		if (!mainmenuJSON.storymode) {
+			optionShit.remove("story_mode");
+		}
+		if (!mainmenuJSON.freeplay) {
+			optionShit.remove("freeplay");
+		}
+		if (!mainmenuJSON.mods) {
+			optionShit.remove("mods");
+		}
+		if (!mainmenuJSON.awards) {
+			optionShit.remove("awards");
+		}
+		if (!mainmenuJSON.credits) {
+			optionShit.remove("credits");
+		}
+		if (!mainmenuJSON.donate) {
+			optionShit.remove("donate");
+		}
+		if (!mainmenuJSON.options) {
+			optionShit.remove("options");
+		}
 
 		if (!selectedSomethin)
 		{
