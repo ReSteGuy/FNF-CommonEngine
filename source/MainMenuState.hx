@@ -59,6 +59,8 @@ class MainMenuState extends MusicBeatState
 		'options'
 	];
 
+	var mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
+
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var camFollowPos:FlxObject;
@@ -66,29 +68,30 @@ class MainMenuState extends MusicBeatState
 
 	override function create()
 	{
-		mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
+
+		// Removes the Options early, hoping this crap works.
 		if (!mainmenuJSON.storymode) {
-		optionShit.remove("story_mode");
+			optionShit.remove("story_mode");
 		}
 		if (!mainmenuJSON.freeplay) {
-		optionShit.remove("freeplay");
+			optionShit.remove("freeplay");
 		}
 		if (!mainmenuJSON.mods) {
-		optionShit.remove("mods");
+			optionShit.remove("mods");
 		}
 		if (!mainmenuJSON.awards) {
-		optionShit.remove("awards");
+			optionShit.remove("awards");
 		}
 		if (!mainmenuJSON.credits) {
-		optionShit.remove("credits");
+			optionShit.remove("credits");
 		}
 		if (!mainmenuJSON.donate) {
-		optionShit.remove("donate");
+			optionShit.remove("donate");
 		}
 		if (!mainmenuJSON.options) {
-		optionShit.remove("options");
+			optionShit.remove("options");
 		}
-		
+	
 		#if MODS_ALLOWED
 		Paths.pushGlobalMods();
 		#end
@@ -208,6 +211,7 @@ class MainMenuState extends MusicBeatState
 		super.create();
 	}
 
+	
 	#if ACHIEVEMENTS_ALLOWED
 	// Unlocks "Freaky on a Friday Night" achievement
 	function giveAchievement() {
@@ -229,6 +233,33 @@ class MainMenuState extends MusicBeatState
 
 		var lerpVal:Float = CoolUtil.boundTo(elapsed * 7.5, 0, 1);
 		camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
+
+		// Removes the Options early, hoping this crap works.
+		if (!mainmenuJSON.storymode) {
+			optionShit.remove("story_mode");
+		}
+		if (!mainmenuJSON.freeplay) {
+			optionShit.remove("freeplay");
+		}
+		if (!mainmenuJSON.mods) {
+			optionShit.remove("mods");
+		}
+		if (!mainmenuJSON.awards) {
+			optionShit.remove("awards");
+		}
+		if (!mainmenuJSON.credits) {
+			optionShit.remove("credits");
+		}
+		if (!mainmenuJSON.donate) {
+			optionShit.remove("donate");
+		}
+		if (!mainmenuJSON.options) {
+			optionShit.remove("options");
+		}
+		if (!mainmenuJSON.shoveleft) {
+			spr.screenCenter(X);
+		}
+
 
 		if (!selectedSomethin)
 		{
