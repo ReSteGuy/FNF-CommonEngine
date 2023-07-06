@@ -59,7 +59,7 @@ class MainMenuState extends MusicBeatState
 		'options'
 	];
 
-	var mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
+	mainmenuJSON = Json.parse(Paths.getTextFromFile('images/mainMenuOptions.json'));
 	// Removes the Options early, hoping this crap works.
 
 	var magenta:FlxSprite;
